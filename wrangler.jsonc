@@ -1,6 +1,7 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "website-bitdata-analytix",
+  "main": "_worker.js",
   "compatibility_date": "2026-10-31",
   "assets": {
     "directory": ".",
@@ -8,4 +9,3 @@
   },
   "previews": {}
 }
-
