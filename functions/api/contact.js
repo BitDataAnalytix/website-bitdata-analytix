@@ -42,8 +42,8 @@ export async function onRequestPost(context) {
     // 3. Mobile / Phone validation (8 to 15 digits)
     const digitsOnly = trimmedPhone.replace(/\D/g, "");
     const phoneRegex = /^[\+]?[0-9\s\-\(\)\.]{7,20}$/;
-    if (!trimmedPhone || !phoneRegex.test(trimmedPhone) || digitsOnly.length < 8 || digitsOnly.length > 15) {
-      return new Response(JSON.stringify({ error: "Please enter a valid mobile or phone number (8 to 15 digits, e.g. +91 98765 43210)." }), {
+    if (!trimmedPhone || !phoneRegex.test(trimmedPhone) || digitsOnly.length < 7 || digitsOnly.length > 15) {
+      return new Response(JSON.stringify({ error: "Please enter a valid mobile or phone number (at least 7 digits)." }), {
         status: 400,
         headers: corsHeaders
       });
