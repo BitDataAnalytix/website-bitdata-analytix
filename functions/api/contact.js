@@ -35,8 +35,8 @@ export async function onRequestPost(context) {
     }
 
     // Email sender and recipient configuration:
-    // Override via Cloudflare Environment Variables: NOTIFICATION_EMAIL and RESEND_FROM_EMAIL
-    const fromAddress = env.RESEND_FROM_EMAIL || "BitData Website <onboarding@resend.dev>";
+    // Override via Cloudflare Environment Variables: NOTIFICATION_EMAIL and RESEND_FROM_EMAIL (or RESEND_FROM_EMAI)
+    const fromAddress = env.RESEND_FROM_EMAIL || env.RESEND_FROM_EMAI || "BitData Website <onboarding@resend.dev>";
     const recipient = env.NOTIFICATION_EMAIL || "contact@bitdataanalytix.com";
 
     // Send email using Resend API
