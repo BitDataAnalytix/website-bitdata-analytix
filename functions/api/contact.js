@@ -16,8 +16,50 @@ export async function onRequestPost(context) {
     const data = await request.json();
     const { name, email, phone, org, interest, msg } = data || {};
 
-    if (!name || !email || !msg) {
-      return new Response(JSON.stringify({ error: "Missing required fields (Name, Email, Message)" }), {
+    const trimmedName = (name || "").trim();
+    const trimmedEmail = (email || "").trim();
+    const trimmedPhone = (phone || "").trim();
+    const trimmedOrg = (org || "").trim();
+    const trimmedMsg = (msg || "").trim();
+
+    // 1. Name validation
+    if (!trimmedName || trimmedName.length < 2) {
+      return new Response(JSON.stringify({ error: "Please enter your full name (at least 2 characters)." }), {
+        status: 400,
+        headers: corsHeaders
+      });
+    }
+
+    // 2. Email validation
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!trimmedEmail || !emailRegex.test(trimmedEmail)) {
+      return new Response(JSON.stringify({ error: "Please enter a valid work email address (e.g. name@company.com)." }), {
+        status: 400,
+        headers: corsHeaders
+      });
+    }
+
+    // 3. Mobile / Phone validation (8 to 15 digits)
+    const digitsOnly = trimmedPhone.replace(/\D/g, "");
+    const phoneRegex = /^[\+]?[0-9\s\-\(\)\.]{7,20}$/;
+    if (!trimmedPhone || !phoneRegex.test(trimmedPhone) || digitsOnly.length < 7 || digitsOnly.length > 15) {
+      return new Response(JSON.stringify({ error: "Please enter a valid mobile or phone number (at least 7 digits)." }), {
+        status: 400,
+        headers: corsHeaders
+      });
+    }
+
+    // 4. Company or Institution validation
+    if (!trimmedOrg || trimmedOrg.length < 2) {
+      return new Response(JSON.stringify({ error: "Please enter your company or institution name." }), {
+        status: 400,
+        headers: corsHeaders
+      });
+    }
+
+    // 5. Message validation (at least 5 characters)
+    if (!trimmedMsg || trimmedMsg.length < 5) {
+      return new Response(JSON.stringify({ error: "Please enter your message (at least 5 characters)." }), {
         status: 400,
         headers: corsHeaders
       });

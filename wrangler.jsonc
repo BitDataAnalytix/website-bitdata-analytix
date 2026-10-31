@@ -4,8 +4,8 @@
   "main": "_worker.js",
   "compatibility_date": "2026-10-31",
   "vars": {
-    "NOTIFICATION_EMAIL": "contact@bitdataanalytix.com",
-    "RESEND_FROM_EMAIL": "BitData Website <info@bitdataanalytix.com>"
+    "NOTIFICATION_EMAIL": "info@bitdataanalytix.com",
+    "RESEND_FROM_EMAIL": "BitData Website <contact@bitdataanalytix.com>"
   },
   "assets": {
     "directory": ".",
