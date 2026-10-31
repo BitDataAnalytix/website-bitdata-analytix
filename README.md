@@ -35,8 +35,8 @@ The logos inside `index.html` are embedded, so the page works on its own. The `a
 
 Search `index.html` for square brackets `[` to find these:
 
-- `[yourdomain]` — your website domain (Privacy Policy, Terms, Cookie notice, contact emails).
-- `info@[yourdomain]`, `privacy@[yourdomain]`, `grievance@[yourdomain]`, `legal@[yourdomain]` — email addresses.
+- `bitdataanalytix.com` — your website domain (Privacy Policy, Terms, Cookie notice, contact emails).
+- `info@bitdataanalytix.com`, `privacy@bitdataanalytix.com`, `grievance@bitdataanalytix.com`, `legal@bitdataanalytix.com` — email addresses.
 - `+91 [phone number]` — business phone.
 - `[Office address]`, `[Full office address]` — office address (Contact, About, Privacy Policy).
 - `[Name]` — Grievance Officer name (Privacy Policy, section 11).
