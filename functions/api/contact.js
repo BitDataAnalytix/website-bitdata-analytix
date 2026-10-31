@@ -34,7 +34,7 @@ export async function onRequestPost(context) {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          from: "BitData Website <info@bitdataanalytix.com>", // Or your verified domain: website@bitdataanalytix.com
+          from: "BitData Website <onboarding@resend.dev>", // Or your verified domain: website@bitdataanalytix.com
           to: ["contact@bitdataanalytix.com"],
           reply_to: email,
           subject: `New Enquiry: ${name} (${interest || "General Enquiry"})`,
