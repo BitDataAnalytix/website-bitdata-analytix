@@ -3043,21 +3043,28 @@
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(payload)
           })
-          .then(function (res) { return res.json().catch(function () { return { success: res.ok }; }); })
-          .then(function (data) {
+          .then(function (res) {
+            return res.json()
+              .then(function (body) { return { ok: res.ok, status: res.status, body: body }; })
+              .catch(function () { return { ok: res.ok, status: res.status, body: {} }; });
+          })
+          .then(function (result) {
             if (btn) { btn.disabled = false; btn.textContent = origTxt; }
             note.hidden = false;
-            if (data.success) {
+            var data = result.body || {};
+            if (result.ok && data.success) {
               f.reset();
               note.innerHTML = "<b>Thank you!</b> Your message has been sent to the BitData team. We will reply within one business day.";
             } else {
-              note.innerHTML = "<b>Could not send message:</b> " + (data.error || "Please write to us directly at info@bitdataanalytix.com");
+              var msg = data.error || (result.status ? "Server error (" + result.status + ")" : "") || "Please write to us directly at info@bitdataanalytix.com";
+              note.innerHTML = "<b>Could not send message:</b> " + msg;
             }
           })
-          .catch(function () {
+          .catch(function (err) {
+            console.error("Contact form error:", err);
             if (btn) { btn.disabled = false; btn.textContent = origTxt; }
             note.hidden = false;
-            note.innerHTML = "<b>Form checked.</b> Preview mode: once deployed on Cloudflare with RESEND_API_KEY, enquiries will be sent directly to your inbox.";
+            note.innerHTML = "<b>Could not send message:</b> Network error. Please write to us directly at info@bitdataanalytix.com";
           });
           return;
         }
