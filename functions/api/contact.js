@@ -34,8 +34,10 @@ export async function onRequestPost(context) {
       });
     }
 
-    // Email recipient: default to founder email, can be overridden via env.NOTIFICATION_EMAIL
-    const recipient = env.NOTIFICATION_EMAIL || "bitdata.analytix@gmail.com";
+    // Email sender and recipient configuration:
+    // Override via Cloudflare Environment Variables: NOTIFICATION_EMAIL and RESEND_FROM_EMAIL
+    const fromAddress = env.RESEND_FROM_EMAIL || "BitData Website <onboarding@resend.dev>";
+    const recipient = env.NOTIFICATION_EMAIL || "contact@bitdataanalytix.com";
 
     // Send email using Resend API
     const resendRes = await fetch("https://api.resend.com/emails", {
@@ -45,7 +47,7 @@ export async function onRequestPost(context) {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        from: "BitData Website <onboarding@resend.dev>", // Once bitdataanalytix.com is verified in Resend, switch to info@bitdataanalytix.com
+        from: fromAddress,
         to: [recipient],
         reply_to: email,
         subject: `New Website Enquiry: ${name} (${interest || "General Enquiry"})`,
