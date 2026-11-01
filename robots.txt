@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /api/
 
-Sitemap: https://www.bitdataanalytix.com/sitemap.xml
+Sitemap: https://bitdataanalytix.com/sitemap.xml

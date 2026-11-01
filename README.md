@@ -16,6 +16,8 @@ Slogan: **Analyzing every bit of data**
 | `assets/images/` | Stacks dashboard mockup images (light and dark), for the Stacks app redesign. |
 | `assets/fonts/` | Montserrat font files and licence (SIL Open Font License), in case you self-host fonts later. |
 | `robots.txt`, `sitemap.xml` | Search engine files (see section 7). |
+| `googlee8d94a406f665bff.html` | Google Search Console ownership file. Keep it. |
+| `TODO.md` | Things still to do, with priorities. |
 | `README.md` | This file. |
 
 The logos inside `index.html` are embedded, so the page works on its own. The `assets` folder holds the original files for reference, hosting and future edits.
@@ -116,10 +118,11 @@ Added 1 November 2026.
 - **Structured data (schema.org JSON-LD).** In `<head>`: the business (ProfessionalService) with address, phone, email, hours, founder and LinkedIn, plus WebSite. Per page: WebPage, BreadcrumbList, and Service (service pages) or SoftwareApplication (Stacks). Check with https://search.google.com/test/rich-results once live.
 - **`sitemap.xml`** (27 pages; `/terms` left out until the legal review) and **`robots.txt`** in the site root. Add new pages to `sitemap.xml` when you publish them.
 - **Favicon set** linked in `<head>`; `assets/favicon/site.webmanifest` icon paths fixed to `/assets/favicon/…`.
-- **Domain:** all URLs use `https://www.bitdataanalytix.com`. In Cloudflare, redirect `bitdataanalytix.com` to `www.bitdataanalytix.com` so there is only one version of each page.
+- **Domain:** the site's main address is `https://bitdataanalytix.com` (no www), matching the Google Search Console property. All canonical URLs, the sitemap and the schema use it. `www.bitdataanalytix.com` (printed on the brand kit) does not open yet: add it in Cloudflare and redirect it to `https://bitdataanalytix.com` (see TODO.md).
+- **Google Search Console verification:** `googlee8d94a406f665bff.html` in the site root. Do not delete it, or the site loses its verified status.
 
 After launch:
-1. Verify the domain in Google Search Console and submit `https://www.bitdataanalytix.com/sitemap.xml` (also Bing Webmaster Tools).
+1. Verify the domain in Google Search Console and submit `https://bitdataanalytix.com/sitemap.xml` (also Bing Webmaster Tools).
 2. Create the Google Business Profile with exactly the same name, address and phone as the site.
 3. Add Google Analytics only after the cookie banner is wired to it.
 4. Upload `email-signature-logo@2x.png` from the brand kit to `/email/` so the email signature logo loads.
