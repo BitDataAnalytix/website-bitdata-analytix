@@ -15,6 +15,9 @@ Slogan: **Analyzing every bit of data**
 | `assets/favicon/` | Full favicon and app-icon set from the brand kit, with its install instructions. |
 | `assets/images/` | Stacks dashboard mockup images (light and dark), for the Stacks app redesign. |
 | `assets/fonts/` | Montserrat font files and licence (SIL Open Font License), in case you self-host fonts later. |
+| `robots.txt`, `sitemap.xml` | Search engine files (see section 7). |
+| `googlee8d94a406f665bff.html` | Google Search Console ownership file. Keep it. |
+| `TODO.md` | Things still to do, with priorities. |
 | `README.md` | This file. |
 
 The logos inside `index.html` are embedded, so the page works on its own. The `assets` folder holds the original files for reference, hosting and future edits.
@@ -31,27 +34,17 @@ The logos inside `index.html` are embedded, so the page works on its own. The `a
 
 ---
 
-## 3. Before going live (placeholders to fill)
+## 3. Before going live (still to fill)
 
-Search `index.html` for square brackets `[` to find these:
+Contact details now match the brand kit: contact@bitdataanalytix.com (all site and legal emails), +91 77700 66911, and 1511B, Sadashiv Peth, Tilak Road, Pune 411030. Grievance Officer: shown by role and business name only (no personal name on the site for now). Courts and arbitration: Pune.
 
-- `bitdataanalytix.com` — your website domain (Privacy Policy, Terms, Cookie notice, contact emails).
-- `info@bitdataanalytix.com`, `privacy@bitdataanalytix.com`, `grievance@bitdataanalytix.com`, `legal@bitdataanalytix.com` — email addresses.
-- `+91 [phone number]` — business phone.
-- `[Office address]`, `[Full office address]` — office address (Contact, About, Privacy Policy).
-- `[Name]` — Grievance Officer name (Privacy Policy, section 11).
-- `[City]` — city for arbitration and courts (Terms, section 15).
-- `[40]%`, `[40]%`, `[20]%`, `[1.5]%`, `[60] days` — payment terms and warranty period (Terms).
-- `[Add your founder profile …]` — founder photo and short bio (About page).
+Still open:
+- `[40]%`, `[40]%`, `[20]%`, `[1.5]%`, `[60] days` — payment terms and warranty period (Terms, "Payment terms" and "Warranty and support").
+- Founder photo and bio (About page) — `assets/images/ajinkya-yelai.jpg`.
 - Cookie notice partner list — update to the tools you actually install.
-
-Also before launch:
-- **Legal review:** have a lawyer review the Privacy Policy, Terms & Conditions and Behavioral Advertising notice.
-- **Translation review:** German, Japanese and Chinese text was written by Claude. Have a native speaker check each, especially the legal pages.
-- **Forms:** the Contact form and Blog email sign-up validate input but do not send anything yet. Connect them to an email service, CRM or form backend (e.g. Formspree, Netlify Forms, EmailJS) once hosted.
-- **Website field on LinkedIn:** add the domain to the LinkedIn page once live.
-
----
+- The "Items in [square brackets] … have a lawyer review" note at the top of each legal page — remove it after the legal review.
+- **Legal review** of Privacy Policy, Terms & Conditions and Behavioral Advertising notice. Until the Terms are reviewed, the Terms link is hidden from the footer and `/terms` is left out of `sitemap.xml`; to show it again add `<a href="/terms">Terms &amp; Conditions</a>` back to the footer's Legal column and the URL back to the sitemap.
+- **Translation review** of German, Japanese and Chinese text by native speakers.
 
 ## 4. Site structure (sitemap)
 
@@ -115,10 +108,30 @@ Open the file in a text editor (e.g. VS Code) and search for these names:
 
 ---
 
-## 7. Version history
+## 7. Search engine optimisation (SEO)
+
+Added 1 November 2026.
+
+- **Real page addresses.** Every page has its own URL (`/services`, `/service-data-analytics`, `/industry-healthcare`, `/stacks`, `/contact` …) instead of `#hash` links, so Google can index each page separately. Old `#contact`-style links still work and are redirected. Opened straight from disk (file://) the site falls back to `#` links. Cloudflare serves `index.html` for every path (`not_found_handling: single-page-application` in `wrangler.jsonc`).
+- **Titles and descriptions per page.** Search for `var SEO = {` in `index.html`. Each entry is `[title, description]`; keep titles under ~60 characters and descriptions under ~155. Industry pages are generated from `IND`, blog posts from `POSTS`.
+- **Canonical URL, Open Graph and X/Twitter tags** update on every page, so links shared on LinkedIn or WhatsApp show the right title and the brand image `assets/images/og-image.png` (1200 × 630, from the brand kit).
+- **Structured data (schema.org JSON-LD).** In `<head>`: the business (ProfessionalService) with address, phone, email, hours, founder and LinkedIn, plus WebSite. Per page: WebPage, BreadcrumbList, and Service (service pages) or SoftwareApplication (Stacks). Check with https://search.google.com/test/rich-results once live.
+- **`sitemap.xml`** (27 pages; `/terms` left out until the legal review) and **`robots.txt`** in the site root. Add new pages to `sitemap.xml` when you publish them.
+- **Favicon set** linked in `<head>`; `assets/favicon/site.webmanifest` icon paths fixed to `/assets/favicon/…`.
+- **Domain:** the site's main address is `https://bitdataanalytix.com` (no www), matching the Google Search Console property. All canonical URLs, the sitemap and the schema use it. `www.bitdataanalytix.com` (printed on the brand kit) does not open yet: add it in Cloudflare and redirect it to `https://bitdataanalytix.com` (see TODO.md).
+- **Google Search Console verification:** `googlee8d94a406f665bff.html` in the site root. Do not delete it, or the site loses its verified status.
+
+After launch:
+1. Verify the domain in Google Search Console and submit `https://bitdataanalytix.com/sitemap.xml` (also Bing Webmaster Tools).
+2. Create the Google Business Profile with exactly the same name, address and phone as the site.
+3. Add Google Analytics only after the cookie banner is wired to it.
+4. Upload `email-signature-logo@2x.png` from the brand kit to `/email/` so the email signature logo loads.
+
+## 8. Version history
 
 - **v1.0 (23 Oct 2026):** first full site — home, 7 services, industries, Stacks, Innovation Lab, About, Careers, Contact, legal pages; Industries and Products drop-downs; Blog section.
 - **v2.0 (24–25 Oct 2026):** everything in section 5 above.
+- **v2.1 (1 Nov 2026):** SEO (section 7), real page addresses, contact details and footer matched to the brand kit (contact@ email, phone, Pune address). No personal name on the site for now; Terms link hidden from the footer until the legal review.
 
 Published previews (private links on claude.ai):
 - v1.0: https://claude.ai/artifact/XiQWiB9xEGbZrgz4TNtoH4
